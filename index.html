@@ -44,7 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 10%;
+            padding: 1.2rem 10%;
         }
 
         .logo {
@@ -57,14 +57,14 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: 1.5rem;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-muted);
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
@@ -74,53 +74,53 @@
 
         /* Hero Section */
         header {
-            padding: 10rem 10% 6rem 10%;
+            padding: 8rem 5% 4rem 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 4rem;
+            gap: 2.5rem;
             min-height: 85vh;
         }
 
         .hero-text {
-            flex: 1;
+            width: 100%;
         }
 
         .hero-text .badge {
             background-color: var(--accent-light);
             color: var(--accent-color);
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             display: inline-block;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .hero-text h1 {
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
         }
 
         .hero-text p {
             color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            max-width: 540px;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            max-width: 0 10px;
         }
 
         .hero-image {
-            flex: 1;
             display: flex;
             justify-content: center;
+            width: 100%;
         }
 
         .profile-frame {
-            width: 320px;
-            height: 320px;
+            width: 240px;
+            height: 240px;
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             background: linear-gradient(45deg, var(--accent-light), #c7d2fe);
             background-size: cover;
@@ -144,14 +144,14 @@
 
         /* Global Section Layout */
         section {
-            padding: 6rem 10%;
+            padding: 5rem 5%;
             border-top: 1px solid var(--border-color);
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             letter-spacing: -0.5px;
             position: relative;
         }
@@ -160,18 +160,18 @@
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 3rem;
+            gap: 2rem;
         }
 
         .info-card {
             background: var(--card-bg);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 16px;
             border: 1px solid var(--border-color);
         }
 
         .info-item {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .info-item:last-child {
@@ -180,7 +180,7 @@
 
         .info-item label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 0.25rem;
         }
@@ -188,24 +188,26 @@
         .info-item p {
             font-weight: 600;
             color: var(--text-main);
+            font-size: 0.95rem;
         }
 
         .about-text p {
             color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-align: justify;
         }
 
         /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr; 
+            gap: 1.5rem;
         }
 
         .skill-card {
             background: var(--card-bg);
-            padding: 2.5rem 2rem;
+            padding: 2rem 1.5rem;
             border-radius: 16px;
             border: 1px solid var(--border-color);
             transition: transform 0.3s, box-shadow 0.3s;
@@ -225,25 +227,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
         }
 
         .skill-card h3 {
-            margin-bottom: 0.75rem;
-            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
         }
 
         .skill-card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr; /* Satu kolom per baris agar lega di HP */
+            gap: 1.5rem;
         }
 
         .project-card {
@@ -261,17 +263,17 @@
         }
 
         .project-preview {
-            height: 200px;
+            height: 160px;
             background: #e2e8f0;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-muted);
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
         .project-info {
-            padding: 2rem;
+            padding: 1.5rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -279,13 +281,13 @@
 
         .project-info h3 {
             margin-bottom: 0.5rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .project-info p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
             flex-grow: 1;
         }
 
@@ -296,44 +298,45 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         /* Footer / Contact */
         footer {
             background: var(--card-bg);
-            padding: 5rem 10% 3rem 10%;
+            padding: 4rem 5% 2rem 5%;
             border-top: 1px solid var(--border-color);
             text-align: center;
         }
 
         .footer-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
         }
 
         .footer-subtitle {
             color: var(--text-muted);
-            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 4rem;
+            gap: 1.2rem;
+            margin-bottom: 3rem;
         }
 
         .social-btn {
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: var(--bg-color);
             color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             text-decoration: none;
             transition: all 0.3s;
             border: 1px solid var(--border-color);
@@ -347,7 +350,7 @@
 
         .copyright {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         /* Responsive Breakpoints */
