@@ -4,20 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rheza Saputra | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --bg-color: #faf8f5;
-            --card-bg: #ffffff;
-            --text-main: #2b2927;
-            --text-muted: #706c68;
-            --accent-color: #8c7a6b;
-            --accent-light: #f0eae1;
-            --border-color: #e8e1d7;
-        }
-
+        /* --- RESET & VARIABLES (Soft & Elegant Color Palette) --- */
         * {
             margin: 0;
             padding: 0;
@@ -26,354 +18,443 @@
             scroll-behavior: smooth;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
+        :root {
+            --bg-base: #f4f7f6;
+            --bg-surface: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --primary: #8da9c4;
+            --primary-dark: #0b2545;
+            --accent: #eef4f8;
+            --shadow: rgba(141, 169, 196, 0.15);
+            --radius: 20px;
         }
 
-        /* Navigation */
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        /* --- NAVBAR --- */
         nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(248, 250, 252, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
+            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 10%;
+            background: rgba(244, 247, 246, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
 
-        .logo {
+        nav .logo {
             font-weight: 700;
             font-size: 1.2rem;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
+            letter-spacing: 1px;
+            color: var(--primary-dark);
         }
 
-        .nav-links {
+        nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 25px;
         }
 
-        .nav-links a {
+        nav ul a {
             text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
+            color: var(--text-main);
+            font-weight: 600;
             font-size: 0.9rem;
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
+        nav ul a:hover {
+            color: var(--primary);
         }
 
-        /* Hero Section */
-        header {
-            padding: 8rem 5% 4rem 5%;
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: 90vh;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 2.5rem;
-            min-height: 85vh;
+            padding: 0 10%;
+            position: relative;
+            background: radial-gradient(circle at 80% 20%, var(--accent) 0%, transparent 60%);
         }
 
-        .hero-text {
+        .hero-content {
+            max-width: 650px;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--primary-dark);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* --- OVERLAPPING FRAMEWORK --- */
+        .main-container {
+            position: relative;
+            margin-top: -60px;
+            padding: 0 10% 40px 10%;
+            z-index: 5;
             width: 100%;
         }
 
-        .hero-text .badge {
-            background-color: var(--accent-light);
-            color: var(--accent-color);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1.2rem;
+        .card-panel {
+            background: var(--bg-surface);
+            border-radius: var(--radius);
+            padding: 50px;
+            box-shadow: 0 20px 40px var(--shadow);
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.8);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+            width: 100%;
         }
 
-        .hero-text h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
+        .card-panel.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .hero-text p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            max-width: 0 10px;
+        /* --- ABOUT SECTION (INTERACTIVE PROFILE FOTO) --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1.4fr;
+            gap: 50px;
+            align-items: center;
         }
 
-        .hero-image {
+        .profile-container {
+            position: relative;
             display: flex;
             justify-content: center;
+            align-items: center;
             width: 100%;
         }
 
         .profile-frame {
-            width: 240px;
-            height: 240px;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            background: linear-gradient(45deg, var(--accent-light), #c7d2fe);
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
-            animation: morph 8s ease-in-out infinite alternate;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1;
+            max-width: 320px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             overflow: hidden;
+            background: var(--accent);
+            box-shadow: 0 15px 35px rgba(141, 169, 196, 0.3);
+            animation: morphing 8s ease-in-out infinite, floating 4s ease-in-out infinite;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s;
+            cursor: pointer;
+            border: 4px solid rgba(255, 255, 255, 0.5);
         }
 
-        /* Ganti URL gambar di bawah dengan foto kamu sendiri */
         .profile-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            scale: 1.1;
+            transition: transform 0.5s ease;
         }
 
-        @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            100% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+        .profile-frame:active, .profile-frame:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(13, 37, 69, 0.2);
+            border-color: var(--primary);
         }
 
-        /* Global Section Layout */
-        section {
-            padding: 5rem 5%;
-            border-top: 1px solid var(--border-color);
+        .about-text h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 18px;
         }
 
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            letter-spacing: -0.5px;
-            position: relative;
-        }
-
-        /* About Section */
-        .about-grid {
+        .meta-info {
+            margin-top: 25px;
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-        }
-
-        .info-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
         .info-item {
-            margin-bottom: 1.2rem;
+            background: var(--bg-base);
+            padding: 15px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+        
+        .info-item:hover {
+            transform: translateY(-3px);
         }
 
-        .info-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .info-item label {
+        .info-item span {
             display: block;
             font-size: 0.8rem;
             color: var(--text-muted);
-            margin-bottom: 0.25rem;
+            margin-bottom: 3px;
         }
 
-        .info-item p {
-            font-weight: 600;
-            color: var(--text-main);
+        .info-item strong {
             font-size: 0.95rem;
+            color: var(--primary-dark);
         }
 
-        .about-text p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            text-align: justify;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr; 
-            gap: 1.5rem;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            padding: 2rem 1.5rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-        }
-
-        .skill-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--accent-light);
-            color: var(--accent-color);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .skill-card h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.15rem;
-        }
-
-        .skill-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* Satu kolom per baris agar lega di HP */
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-preview {
-            height: 160px;
-            background: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 2.5rem;
-        }
-
-        .project-info {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-info h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .project-info p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.2rem;
-            flex-grow: 1;
-        }
-
-        .project-link {
-            text-decoration: none;
-            color: var(--accent-color);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        /* Footer / Contact */
-        footer {
-            background: var(--card-bg);
-            padding: 4rem 5% 2rem 5%;
-            border-top: 1px solid var(--border-color);
+        /* --- SKILLS SECTION --- */
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 35px;
             text-align: center;
         }
 
-        .footer-title {
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
         }
 
-        .footer-subtitle {
+        .skill-card {
+            background: var(--bg-base);
+            padding: 35px 25px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            background: var(--primary-dark);
+            color: #fff;
+            box-shadow: 0 12px 25px rgba(11, 37, 69, 0.15);
+        }
+
+        .skill-card:hover i, .skill-card:hover p {
+            color: #fff;
+        }
+
+        .skill-card i {
+            font-size: 2.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+        /* --- PROJECTS SECTION --- */
+        .project-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .project-item {
+            background: var(--bg-base);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            min-height: 400px;
+            box-shadow: inset 0 0 1px rgba(0,0,0,0.1);
+        }
+
+        .project-preview {
+            position: relative;
+            background: #fff;
+            min-height: 350px;
+        }
+
+        .project-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .project-detail {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-detail h3 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .project-detail p {
+            font-size: 0.92rem;
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-live {
+            align-self: flex-start;
+            padding: 12px 24px;
+            background: var(--primary-dark);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-live:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(11, 37, 69, 0.2);
+        }
+
+        /* --- CONTACT & SOCIALS --- */
+        .contact-content {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.2rem;
-            margin-bottom: 3rem;
+            gap: 20px;
+            margin-top: 25px;
         }
 
         .social-btn {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: var(--bg-color);
-            color: var(--text-main);
+            background: var(--bg-base);
+            color: var(--primary-dark);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             text-decoration: none;
-            transition: all 0.3s;
-            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .social-btn:hover {
-            background: var(--accent-color);
-            color: white;
-            transform: translateY(-3px);
+            background: var(--primary-dark);
+            color: #fff;
+            transform: scale(1.15) translateY(-3px);
         }
 
-        .copyright {
+        /* --- FOOTER (PERFECTLY CENTERED) --- */
+        footer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--bg-base);
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+            z-index: 10;
+        }
+
+        footer p {
+            font-size: 0.85rem;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            margin: 0 auto;
+            display: inline-block;
+            letter-spacing: 0.5px;
         }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 968px) {
-            header {
-                flex-direction: column-reverse;
+        /* --- KEYFRAMES ANIMASI --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes morphing {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 45% 55% 50% 50% / 50% 60% 40% 55%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- RESPONSIVE MOBILE & HP --- */
+        @media (max-width: 768px) {
+            nav { padding: 15px 5%; justify-content: center; }
+            nav ul { display: none; }
+
+            #hero {
+                padding: 130px 6% 60px 6%;
                 text-align: center;
-                padding-top: 8rem;
+                min-height: auto;
             }
-            .hero-text p {
-                margin: 0 auto 2.5rem auto;
+            
+            .hero-content h1 { font-size: 2.3rem; }
+            
+            .main-container {
+                margin-top: -20px;
+                padding: 0 4% 30px 4%;
             }
+
+            .card-panel { 
+                padding: 35px 20px; 
+                margin-bottom: 25px;
+                border-radius: 16px;
+            }
+            
             .about-grid {
                 grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .profile-frame {
+                max-width: 240px;
+                margin: 0 auto;
+            }
+
+            .about-text { text-align: center; }
+            .meta-info { grid-template-columns: 1fr; gap: 10px; }
+            .skills-grid { grid-template-columns: 1fr; }
+
+            .project-item { grid-template-columns: 1fr; min-height: auto; }
+            .project-preview { height: 290px; }
+            .project-detail { padding: 25px 20px; text-align: center; }
+            .btn-live { align-self: center; width: 100%; justify-content: center; }
+            
+            footer {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <nav>
-        <div class="logo">RS.</div>
-        <ul class="nav-links">
+        <div class="logo">ZZZ</div>
+        <ul>
             <li><a href="#about">Tentang</a></li>
             <li><a href="#skills">Keahlian</a></li>
             <li><a href="#projects">Project</a></li>
@@ -381,108 +462,140 @@
         </ul>
     </nav>
 
-    <header>
-        <div class="hero-text">
-            <span class="badge">Information Systems Student</span>
-            <h1>Hi, saya Rheza Saputra</h1>
-            <p>Mahasiswa Sistem Informasi yang berfokus pada manajemen perangkat keras, infrastruktur IT lokal, dan pengembangan web modern.</p>
-            <a href="#contact" class="project-link" style="font-size: 1.1rem;">Mari Terhubung <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="hero-image">
-            <div class="profile-frame">
-                <img src="image/foto.jpeg" alt="Rheza Saputra">
-            </div>
-        </div>
-    </header>
-
-    <section id="about">
-        <h2 class="section-title">Tentang Saya</h2>
-        <div class="about-grid">
-            <div class="info-card">
-                <div class="info-item">
-                    <label>Pendidikan</label>
-                    <p>Universitas Terbuka</p>
-                </div>
-                <div class="info-item">
-                    <label>Program Studi</label>
-                    <p>Sistem Informasi</p>
-                </div>
-                <div class="info-item">
-                    <label>Tanggal Lahir</label>
-                    <p>06 Maret 2006</p>
-                </div>
-            </div>
-            <div class="about-text">
-                <p>Saya adalah mahasiswa yang memiliki ketertarikan mendalam di dunia IT, baik dari segi perangkat lunak maupun optimalisasi perangkat keras komputer.</p>
-                <p>Melalui studi di Sistem Informasi, saya menggabungkan pemahaman logika bisnis dengan kemampuan teknis operasional untuk membangun serta memelihara ekosistem digital yang efisien.</p>
-            </div>
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Halo, Saya <br><span style="color: var(--primary);">Rheza Saputra</span></h1>
+            <p>Mahasiswa Sistem Informasi yang berfokus pada efisiensi teknologi, manajemen infrastruktur IT, serta pembuatan antarmuka web interaktif.</p>
         </div>
     </section>
 
-    <section id="skills">
-        <h2 class="section-title">Keahlian Teknis</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-laptop-medical"></i></div>
-                <h3>Hardware & OS Setup</h3>
-                <p>Berpengalaman melakukan instalasi ulang sistem operasi Windows/Linux, manajemen driver, optimalisasi BIOS, serta setup aplikasi produktivitas.</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-file-invoice"></i></div>
-                <h3>Office Productivity</h3>
-                <p>Menguasai pengolahan data, penyusunan laporan, dan presentasi menggunakan ekosistem Microsoft Office secara terstruktur.</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-code"></i></div>
-                <h3>Web Development</h3>
-                <p>Memiliki fondasi dasar dalam membangun antarmuka web interaktif menggunakan HTML, CSS, dan JavaScript eksternal.</p>
-            </div>
-        </div>
-    </section>
+    <!-- MAIN CONTAINER (OVERLAPPING WRAPPER) -->
+    <div class="main-container">
 
-    <section id="projects">
-        <h2 class="section-title">Project Terbaru</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-preview" style="background-color: #e8e1d7;">
-                    <i class="fas fa-vial" style="color: #8c7a6b;"></i>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="card-panel">
+            <div class="about-grid">
+                <div class="profile-container">
+                    <div class="profile-frame">
+                        <img src="image/foto.jpeg" alt="Rheza Saputra">
+                    </div>
                 </div>
-                <div class="project-info">
-                    <h3>Test Project</h3>
-                    <p>Eksperimen fitur, layout web, serta pengujian optimasi skrip JavaScript pra-produksi.</p>
-                    <a href="https://rz060306-png.github.io/testproject/" target="_blank" class="project-link">Buka Project <i class="fas fa-external-link-alt"></i></a>
+                <div class="about-text">
+                    <h2>Tentang Saya</h2>
+                    <p>Saya adalah mahasiswa aktif di <strong>Universitas Terbuka</strong> program studi <strong>Sistem Informasi</strong>. Memiliki ketertarikan mendalam dalam pengelolaan sistem perangkat lunak, optimasi performa komputer, dan perancangan web yang fungsional.</p>
+                    
+                    <div class="meta-info">
+                        <div class="info-item">
+                            <span>Tanggal Lahir</span>
+                            <strong>6 Maret 2006</strong>
+                        </div>
+                        <div class="info-item">
+                            <span>Institusi Kuliah</span>
+                            <strong>Universitas Terbuka</strong>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-preview" style="background-color: #e8e1d7;">
-                    <i class="fas fa-gamepad" style="color: #8c7a6b;"></i>
-                </div>
-                <div class="project-info">
-                    <h3>Els Snake Game</h3>
-                    <p>Pengembangan game arcade klasik berbasis web menggunakan manipulasi DOM JavaScript.</p>
-                    <a href="https://rz060306-png.github.io/elssnake/" target="_blank" class="project-link">Buka Project <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer id="contact">
-        <h2 class="footer-title">Ayo Mulai Kolaborasi</h2>
-        <p class="footer-subtitle">Silakan hubungi saya melalui platform di bawah ini.</p>
-        
-        <div class="social-links">
-            <a href="https://wa.me/message/URTGZ4QIS2GCP1" target="_blank" class="social-btn" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://www.instagram.com/zeetchaa_?igsh=MWNkanNodGEwMmU1Ng==" target="_blank" class="social-btn" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@rheza.saputra72?_r=1&_t=ZS-97boXw4ndeD" target="_blank" class="social-btn" title="TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
-        </div>
-        <p class="copyright">&copy; 2026 Rheza Saputra. All rights reserved.</p>
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="card-panel">
+            <h2 class="section-title">Keahlian & Bidang</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fa-solid fa-laptop-medical"></i>
+                    <h3>IT Support & Setup</h3>
+                    <p>Melakukan instalasi ulang OS (Windows/Linux), manajemen aplikasi, serta pemecahan masalah (troubleshooting) hardware PC/Laptop.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-regular fa-file-word"></i>
+                    <h3>Office Operations</h3>
+                    <p>Menguasai pengelolaan dokumen, spreadsheet data, dan presentasi kerja menggunakan perangkat Office secara terstruktur.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Web Development</h3>
+                    <p>Mendeploy dan merancang halaman web interaktif serta mengintegrasikannya langsung melalui platform repositori modern.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="card-panel">
+            <h2 class="section-title">Eksperimen Live Project</h2>
+            <div class="project-container">
+
+                <!-- Project 1 -->
+                <div class="project-item">
+                    <div class="project-preview">
+                        <iframe src="https://rz060306-png.github.io/potoboth/" title="Potoboth Project"></iframe>
+                    </div>
+                    <div class="project-detail">
+                        <h3>Project Potoboth</h3>
+                        <p>Aplikasi web interaktif capture yang memanfaatkan fungsionalitas kamera instan layaknya sistem photobooth kekinian.</p>
+                        <a href="https://rz060306-png.github.io/potoboth/" target="_blank" class="btn-live">
+                            Buka Penuh <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-item">
+                    <div class="project-preview">
+                        <iframe src="https://rz060306-png.github.io/elssnake/" title="ElsSnake Project"></iframe>
+                    </div>
+                    <div class="project-detail">
+                        <h3>Elssnake Game</h3>
+                        <p>Eksperimen mini-game arcade klasik Snake yang responsif dan langsung dapat dimainkan langsung dari dalam boks di atas.</p>
+                        <a href="https://rz060306-png.github.io/elssnake/" target="_blank" class="btn-live">
+                            Mainkan Penuh <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="card-panel">
+            <div class="contact-content">
+                <h2 class="section-title" style="margin-bottom: 10px;">Mari Terhubung</h2>
+                <p>Silakan terhubung melalui platform komunikasi atau sosial media di bawah ini.</p>
+                
+                <div class="social-links">
+                    <a href="https://wa.me/message/URTGZ4QIS2GCP1" target="_blank" class="social-btn" title="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/zeetchaa_?igsh=MWNkanNodGEwMmU1Ng==" target="_blank" class="social-btn" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@rheza.saputra72?_r=1&_t=ZS-97lcLLksLaq" target="_blank" class="social-btn" title="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Rheza Saputra. All rights reserved.</p>
     </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT (Scroll Animation) -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card-panel').forEach((el) => observer.observe(el));
+    </script>
 
 </body>
 </html>
